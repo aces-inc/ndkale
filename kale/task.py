@@ -111,6 +111,10 @@ class Task(object):
         return task_id
 
     @classmethod
+    def _get_delay_sec_for_retry_with_message(cls, message, raised_exception):
+        return cls._get_delay_sec_for_retry_with_message(message.task_retry_num)
+
+    @classmethod
     def _get_delay_sec_for_retry(cls, current_retry_num):
         """Generate a delay based on the number of times the task has failed.
 
@@ -167,7 +171,7 @@ class Task(object):
             'kwargs': message.task_kwargs,
             'app_data': message.task_app_data}
         retry_count = message.task_retry_num + 1
-        delay_sec = cls._get_delay_sec_for_retry(message.task_retry_num)
+        delay_sec = cls._get_delay_sec_for_retry_with_message(message.task_retry_num, raised_exception)
         pub = cls._get_publisher()
         pub.publish(
             cls, message.task_id, payload,
