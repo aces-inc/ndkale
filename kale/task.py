@@ -308,4 +308,4 @@ class Task(object):
                        'TASK_ID=%s, TRACEBACK=%s' %
                        (failure_type, message.task_name, message.task_id,
                         exception))
-        logger.error(message_str)
+        logger.error(message_str, exc_info=True)
