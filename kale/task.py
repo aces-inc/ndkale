@@ -140,7 +140,7 @@ class Task(object):
         """
 
         logger.warning('Task %s failed: %s.' % (message.task_id,
-                                                raised_exception))
+                                                raised_exception), exc_info=True)
 
         if isinstance(raised_exception, exceptions.TimeoutException):
             message.task_inst._kill_runtime_exceeded()
