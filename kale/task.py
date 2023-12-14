@@ -116,7 +116,7 @@ class Task(object):
 
     @classmethod
     def _get_delay_sec_for_retry(cls, current_retry_num):
-        """Generate a delay based on the number of times the task has failed.
+        """Generate a delay based on the number of times the task has retried.
 
         :param int current_retry_num: Task retry count for the task that is
             about to be published.
@@ -128,13 +128,15 @@ class Task(object):
                    settings.SQS_MAX_TASK_DELAY_SEC)
 
     @classmethod
-    def handle_failure(cls, message, raised_exception):
+    def handle_failure(cls, message, raised_exception, increment_failure_num=True):
         """Logic to respond to task failure.
 
         :param KaleMessage message: instance of KaleMessage containing the
             task that failed.
         :param Exception raised_exception: exception that the failed task
             raised.
+        :param increment_failure_num: boolean whether the failure should increment
+            the retry count.
         :return: True if the task will be retried, False otherwise.
         :rtype: boolean
         """
@@ -160,12 +162,20 @@ class Task(object):
             return False
 
         # Monitor retries and dropped tasks
-        if message.task_retry_num >= cls.max_retries:
+        if message.task_failure_num >= cls.max_retries:
             cls._report_permanent_failure(
                 message, raised_exception,
                 PERMANENT_FAILURE_RETRIES_EXCEEDED, False)
             return False
 
+        failure_count = message.task_failure_num
+        if increment_failure_num:
+            failure_count = failure_count + 1
+        cls.republish(message, failure_count)
+        return True
+
+    @classmethod
+    def republish(cls, message, failure_count):
         payload = {
             'args': message.task_args,
             'kwargs': message.task_kwargs,
@@ -175,8 +185,7 @@ class Task(object):
         pub = cls._get_publisher()
         pub.publish(
             cls, message.task_id, payload,
-            current_retry_num=retry_count, delay_sec=delay_sec)
-        return True
+            current_retry_num=retry_count, current_failure_num=failure_count, delay_sec=delay_sec)
 
     def run(self, *args, **kwargs):
         """Wrap the run_task method of tasks.
@@ -217,6 +226,9 @@ class Task(object):
     def run_task(self, *args, **kwargs):
         """Run the task, this must be implemented by subclasses."""
         raise NotImplementedError()
+
+    def should_run_task(self, *args, **kwargs):
+        return True
 
     def _check_blacklist(self, *args, **kwargs):
         """Raises an exception if a task should not run.

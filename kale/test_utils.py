@@ -29,6 +29,19 @@ class FailTask(task.Task):
         raise exceptions.TaskException('Task failed.')
 
 
+class ShouldNotRunTask(task.Task):
+
+    @classmethod
+    def _get_task_id(cls, *args, **kwargs):
+        return "should_not_run_task"
+
+    def should_run_task(self, *args, **kwargs):
+        return False
+
+    def run_task(self, *args, **kwargs):
+        pass
+
+
 class TimeoutTask(task.Task):
 
     @classmethod
@@ -61,7 +74,7 @@ class FailTaskNoRetries(FailTask):
 class MockMessage(message.KaleMessage):
 
     def __init__(self, task_inst, task_args=None, task_kwargs=None, app_data=None,
-                 retry_num=0):
+                 retry_num=0, failure_num=0):
         """Instantiate a mock KaleMessage.
 
         Args:
@@ -74,6 +87,7 @@ class MockMessage(message.KaleMessage):
         self.task_kwargs = task_kwargs or {}
         self.task_app_data = app_data or {}
         self.task_retry_num = retry_num
+        self.task_failure_num = failure_num
         self.task_inst = task_inst
 
 
