@@ -77,7 +77,7 @@ setup(
         'nose==1.3.7',
         'moto==2.2.16',
         'MarkupSafe>=2.1.1',
-        'Jinja2==2.11.3',
+        'Jinja2==3.1.4',
         'zipp==0.6.0',
         'ecdsa==0.14.1',
     ],
