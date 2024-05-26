@@ -7,8 +7,8 @@ import multiprocessing  # To make python setup.py test happy
 import os
 import shutil
 import subprocess
-
 from distutils.command.clean import clean
+
 from setuptools import setup
 
 multiprocessing
@@ -49,10 +49,10 @@ classes = """
     Topic :: Software Development :: Object Brokering
     Programming Language :: Python
     Programming Language :: Python
-    Programming Language :: Python :: 2.7
-    Programming Language :: Python :: 3.5
-    Programming Language :: Python :: 3.6
-    Programming Language :: Python :: 3.7
+    Programming Language :: Python :: 3.8
+    Programming Language :: Python :: 3.9
+    Programming Language :: Python :: 3.10
+    Programming Language :: Python :: 3.11
     Programming Language :: Python :: Implementation :: CPython
     Operating System :: OS Independent
 """
@@ -75,8 +75,8 @@ setup(
     tests_require=[
         'mock==2.0.0',
         'nose==1.3.7',
-        'moto==1.3.15.dev122',
-        'MarkupSafe==1.1.1',
+        'moto==2.2.16',
+        'MarkupSafe>=2.1.1',
         'Jinja2==2.11.3',
         'zipp==0.6.0',
         'ecdsa==0.14.1',
