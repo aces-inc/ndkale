@@ -78,7 +78,7 @@ setup(
         'moto==1.3.15.dev122',
         'MarkupSafe==1.1.1',
         'Jinja2==2.11.3',
-        'zipp==0.6.0',
+        'zipp==3.19.1',
         'ecdsa==0.14.1',
     ],
     test_suite='nose.collector',
