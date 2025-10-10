@@ -210,15 +210,7 @@ Install all runtime and testing dependencies:
 
 Run the test suite:
 
-    uv run --group dev nosetests
-    
-    #
-    # Run from command line
-    #
-
-    pip install -e git+https://github.com/Nextdoor/ndkale.git#egg=ndkale
-
-(We'll upload the package to PyPI soon.)
+    KALE_SETTINGS_MODULE=kale.tests.test_settings uv run python -m unittest discover -s kale/tests -p "test_*.py" -v
 
 ### Example implementation
 
