@@ -54,15 +54,15 @@ class QueueInfoTest(unittest.TestCase):
         queues = queue_info.QueueInfo._get_queues_from_config(
             queue_config.name, queue_info.TaskQueue)
         queue_config.close()
-        self.assertEquals(len(queues), 3)
-        self.assertEquals(queues[0].name, 'digest')
-        self.assertEquals(queues[0].priority, 22)
-        self.assertEquals(queues[0].batch_size, 11)
-        self.assertEquals(queues[0].visibility_timeout_sec, 55)
-        self.assertEquals(queues[0].long_poll_time_sec, 65)
-        self.assertEquals(queues[0].num_iterations, 13)
-        self.assertEquals(queues[1].name, 'default')
-        self.assertEquals(queues[2].name, 'lowp')
+        self.assertEqual(len(queues), 3)
+        self.assertEqual(queues[0].name, 'digest')
+        self.assertEqual(queues[0].priority, 22)
+        self.assertEqual(queues[0].batch_size, 11)
+        self.assertEqual(queues[0].visibility_timeout_sec, 55)
+        self.assertEqual(queues[0].long_poll_time_sec, 65)
+        self.assertEqual(queues[0].num_iterations, 13)
+        self.assertEqual(queues[1].name, 'default')
+        self.assertEqual(queues[2].name, 'lowp')
 
     def _build_queue_info(self):
         sqs_inst = sqs.SQSTalk()
@@ -79,7 +79,7 @@ class QueueInfoTest(unittest.TestCase):
     def test_queues(self):
         qinfo = self._build_queue_info()
         queues = qinfo.get_queues()
-        self.assertEquals(len(queues), 3)
+        self.assertEqual(len(queues), 3)
 
         # TODO (wenbin): add a separate test case for
         # get_highest_priority_non_empty_queue.
