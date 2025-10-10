@@ -209,13 +209,13 @@ This project uses **uv** for package management. The migration from setuptools t
 - Main dependencies in `[project.dependencies]`
 - Test dependencies in both `[project.optional-dependencies]` (for pip compatibility) and `[dependency-groups]` (for uv)
 - Version is dynamically read from `kale/version/__version__` (current: 2.2.4)
-- Python support: >=2.7 (supports Python 2.7, 3.5, 3.6, 3.7+)
+- Python support: >=3.9 (tested with Python 3.9 through 3.12)
 
 **Key dependencies:**
 - `boto3>=1.10.36` - AWS SDK for SQS operations
 - `pycryptodome>=3.6.6` - Message encryption
 - `pyyaml>=5.2` - Queue configuration parsing
-- `six>=1.11.0` - Python 2/3 compatibility
+- Python 3専用化に伴い `six` や `future` といった互換ライブラリは不要
 - `future>=0.18.2` - Python 2/3 compatibility
 
 **Installation methods:**
@@ -232,4 +232,3 @@ uv pip install git+https://github.com/Nextdoor/ndkale.git@<commit-hash>#egg=ndka
 # Install with development and test dependencies
 uv sync --group dev --extra test
 ```
-

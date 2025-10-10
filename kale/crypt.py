@@ -16,8 +16,6 @@ Usage ::
     decrypted_message = crypt.decrypt(encrypted_message)
 
 """
-from __future__ import absolute_import
-
 import base64
 import builtins
 import codecs
@@ -25,7 +23,6 @@ import logging
 import struct
 
 from Crypto.Cipher import AES
-import six
 
 from kale import settings
 
@@ -60,12 +57,9 @@ def encrypt(msg):
     """
     if not cipher:
         return msg
-    if not isinstance(msg, six.binary_type):
+    if not isinstance(msg, (bytes, bytearray)):
         raise ValueError('only bytes can be encrypted')
-    if six.PY2:
-        msg = builtins.bytes(msg)
-
-    msg = _pad(msg)
+    msg = _pad(bytes(msg))
     msg = cipher.encrypt(msg)
     msg = base64.b64encode(msg)
 
@@ -82,16 +76,13 @@ def decrypt(msg):
     if not cipher:
         return msg
 
-    if isinstance(msg, six.text_type):
+    if isinstance(msg, str):
         # This should be a base64 string, so it
         # should encode to ascii without any problems.
         msg = msg.encode('ascii')
 
-    if not isinstance(msg, six.binary_type):
-        raise ValueError('Only bytes(or unicodes) can be decrypted')
-
-    if six.PY2:
-        msg = builtins.bytes(msg)
+    if not isinstance(msg, (bytes, bytearray)):
+        raise ValueError('Only bytes can be decrypted')
 
     try:
         msg = _unpad(cipher.decrypt(base64.b64decode(msg)))
@@ -112,10 +103,9 @@ def urlsafe_encrypt(msg):
     """
     if not cipher:
         return msg
-    if not isinstance(msg, six.binary_type):
+    if not isinstance(msg, (bytes, bytearray)):
         raise ValueError('only bytes can be encrypted')
-
-    msg = base64.urlsafe_b64encode(cipher.encrypt(_pad(msg)))
+    msg = base64.urlsafe_b64encode(cipher.encrypt(_pad(bytes(msg))))
 
     return msg
 
@@ -129,10 +119,9 @@ def hex_encrypt(msg):
     """
     if not cipher:
         return msg
-    if not isinstance(msg, six.binary_type):
+    if not isinstance(msg, (bytes, bytearray)):
         raise ValueError('only bytes can be encrypted')
-
-    msg = cipher.encrypt(_pad(msg))
+    msg = cipher.encrypt(_pad(bytes(msg)))
     msg = codecs.encode(msg, 'hex')
 
     return msg
@@ -148,13 +137,13 @@ def hex_decrypt(msg):
     if not cipher:
         return msg
 
-    if isinstance(msg, six.text_type):
+    if isinstance(msg, str):
         # This should be a hex encoded string, so it
         # should encode to ascii without any problems.
         msg = msg.encode('ascii')
 
-    if not isinstance(msg, six.binary_type):
-        raise ValueError('Only bytes or unicodes can be decrypted')
+    if not isinstance(msg, (bytes, bytearray)):
+        raise ValueError('Only bytes can be decrypted')
 
     try:
         msg = _unpad(cipher.decrypt(codecs.decode(msg, 'hex')))
@@ -175,13 +164,13 @@ def urlsafe_decrypt(msg):
     if not cipher:
         return msg
 
-    if isinstance(msg, six.text_type):
+    if isinstance(msg, str):
         # This should be a base64 encoded string, so it
         # should encode to ascii without any problems.
         msg = msg.encode('ascii')
 
-    if not isinstance(msg, six.binary_type):
-        raise ValueError('Only bytes(or unicodes) can be decrypted')
+    if not isinstance(msg, (bytes, bytearray)):
+        raise ValueError('Only bytes can be decrypted')
 
     try:
         msg = _unpad(cipher.decrypt(base64.urlsafe_b64decode(msg)))

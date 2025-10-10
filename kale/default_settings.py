@@ -1,13 +1,10 @@
 """Default settings for kale."""
-from __future__ import absolute_import
-
 import os
 import pickle
 import platform
 import time
 import zlib
 
-import six
 
 # The default settings are inadequate for actual use
 # due to the need for a queue. When the settings are
@@ -70,8 +67,5 @@ ENABLE_DEAD_LETTER_QUEUE = True
 # Manually specify pickle protocol used for writing Pickle files
 # Py2/Py3 have different default protocols. Reproduce those defaults
 # here for backwards compatibility.
-# Note: If Python 2 & Python 3 need to co-exist, override PICKLE_PROTOCOL=2
-if six.PY2:
-    PICKLE_PROTOCOL = 0
-else:
-    PICKLE_PROTOCOL = pickle.DEFAULT_PROTOCOL
+# Note: If compatibility with other runtimes is required, override PICKLE_PROTOCOL accordingly.
+PICKLE_PROTOCOL = pickle.DEFAULT_PROTOCOL

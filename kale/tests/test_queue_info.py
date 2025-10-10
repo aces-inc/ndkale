@@ -1,10 +1,8 @@
 """Tests queue_info.py"""
-from __future__ import absolute_import
-
 import tempfile
 import unittest
 
-import mock
+from unittest import mock
 from botocore.exceptions import ClientError
 
 from kale import queue_info

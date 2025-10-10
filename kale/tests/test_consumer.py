@@ -1,6 +1,4 @@
 """Module testing the kale.consumer module."""
-from __future__ import absolute_import
-
 import unittest
 
 from moto import mock_aws

@@ -1,6 +1,4 @@
 """Base class for SQS utility classes."""
-from __future__ import absolute_import
-
 import logging
 
 import boto3

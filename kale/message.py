@@ -1,9 +1,5 @@
 """Custom message type for SQS messages."""
-from __future__ import absolute_import
-
 import pickle
-
-import six
 
 from kale import crypt
 from kale import exceptions
@@ -86,7 +82,7 @@ class KaleMessage:
         # Lazily instantiate the task mapper.
         if not self._task_mapper:
             self._task_mapper = {k: utils.class_import_from_path(v)
-                                 for k, v in six.iteritems(settings.TASK_MAPPER)}
+                                 for k, v in settings.TASK_MAPPER.items()}
 
         # This will instantiate the task.
         if instantiate_task:

@@ -1,7 +1,5 @@
 """Module testing the kale.publisher module."""
-from __future__ import absolute_import
-
-import mock
+from unittest import mock
 import unittest
 
 from kale import exceptions

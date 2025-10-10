@@ -1,12 +1,10 @@
 """Module testing the kale.message module."""
-from __future__ import absolute_import
-
 import unittest
+
+from unittest import mock
 
 from kale import message
 from kale import task
-
-import mock
 
 
 def _time_function():
