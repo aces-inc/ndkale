@@ -216,7 +216,7 @@ Run the test suite:
 
     KALE_SETTINGS_MODULE=kale.tests.test_settings uv run python -m unittest discover -s kale/tests -p "test_*.py" -v
 
-The GitHub Actions workflow in `.github/workflows/ci.yml` runs `flake8` lint checks and the unit test suite on Python 3.9, 3.10, 3.11, and 3.12 on every push.
+The GitHub Actions workflow in `.github/workflows/ci.yml` runs the unit test suite on Python 3.9, 3.10, 3.11, and 3.12 on every push.
 
 ### Example implementation
 

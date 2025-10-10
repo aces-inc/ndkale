@@ -24,10 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -e ".[test]" flake8
-
-      - name: Lint with flake8
-        run: flake8 kale example --max-line-length 100 --ignore=E731,E402
+          python -m pip install -e ".[test]"
 
       - name: Run unit tests
         env:

@@ -111,7 +111,7 @@ KALE_SETTINGS_MODULE=kale.tests.test_settings uv run python -m unittest kale.tes
 
 ### Continuous Integration
 - GitHub Actions workflow `.github/workflows/ci.yml` runs on every push (and PR) with Python 3.9, 3.10, 3.11, and 3.12.
-- Workflow steps: install the package with test extras, run `flake8 kale example --max-line-length 100 --ignore=E731,E402`, then execute the unit test suite with `KALE_SETTINGS_MODULE=kale.tests.test_settings`.
+- Workflow steps: install the package with test extras and execute the unit test suite with `KALE_SETTINGS_MODULE=kale.tests.test_settings`.
 
 ### Local Development with ElasticMQ
 
