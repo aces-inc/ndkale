@@ -917,6 +917,38 @@ wheels = [
 ]
 
 [[package]]
+name = "importlib-metadata"
+version = "4.8.3"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.6.*'",
+]
+dependencies = [
+    { name = "typing-extensions", version = "4.1.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "zipp", marker = "python_full_version == '3.6.*'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/85/ed/e65128cc5cb1580f22ee3009d9187ecdfcc43ffb3b581fe854b24e87d8e7/importlib_metadata-4.8.3.tar.gz", hash = "sha256:766abffff765960fcc18003801f7044eb6755ffae4521c8e8ce8e83b9c9b0668", size = 41979 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a0/a1/b153a0a4caf7a7e3f15c2cd56c7702e2cf3d89b1b359d1f1c5e59d68f4ce/importlib_metadata-4.8.3-py3-none-any.whl", hash = "sha256:65a9576a5b2d58ca44d133c42a241905cc45e34d2c06fd5ba2bafa221e5d7b5e", size = 17978 },
+]
+
+[[package]]
+name = "importlib-metadata"
+version = "6.7.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.7.*'",
+]
+dependencies = [
+    { name = "typing-extensions", version = "4.7.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "zipp", marker = "python_full_version == '3.7.*'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a3/82/f6e29c8d5c098b6be61460371c2c5591f4a335923639edec43b3830650a4/importlib_metadata-6.7.0.tar.gz", hash = "sha256:1aaf550d4f73e5d6783e7acb77aec43d49da8017410afae93822cc9cca98c4d4", size = 53569 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ff/94/64287b38c7de4c90683630338cf28f129decbba0a44f0c6db35a873c73c4/importlib_metadata-6.7.0-py3-none-any.whl", hash = "sha256:cb52082e659e97afc5dac71e79de97d8681de3aa07ff18578330904a9d18e5b5", size = 22934 },
+]
+
+[[package]]
 name = "ipaddress"
 version = "1.0.23"
 source = { registry = "https://pypi.org/simple" }
@@ -1116,57 +1148,135 @@ wheels = [
 name = "moto"
 version = "1.3.15"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.5.*'",
+    "python_full_version == '3.4.*'",
+    "python_full_version >= '3' and python_full_version < '3.4'",
+    "python_full_version < '3'",
+]
 dependencies = [
     { name = "backports-tempfile", marker = "python_full_version < '3.3'" },
-    { name = "boto" },
+    { name = "boto", marker = "python_full_version < '3.6'" },
     { name = "boto3", version = "1.17.112", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.6'" },
-    { name = "boto3", version = "1.23.10", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
-    { name = "boto3", version = "1.33.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
-    { name = "boto3", version = "1.37.38", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
-    { name = "boto3", version = "1.40.49", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "botocore", version = "1.20.112", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.6'" },
-    { name = "botocore", version = "1.26.10", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
-    { name = "botocore", version = "1.33.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
-    { name = "botocore", version = "1.37.38", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
-    { name = "botocore", version = "1.40.49", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
-    { name = "jinja2" },
-    { name = "markupsafe" },
-    { name = "mock" },
+    { name = "jinja2", marker = "python_full_version < '3.6'" },
+    { name = "markupsafe", marker = "python_full_version < '3.6'" },
+    { name = "mock", marker = "python_full_version < '3.6'" },
     { name = "more-itertools", version = "5.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.4'" },
     { name = "more-itertools", version = "7.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.4.*'" },
-    { name = "more-itertools", version = "8.14.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.5' and python_full_version < '3.7'" },
-    { name = "more-itertools", version = "9.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
-    { name = "more-itertools", version = "10.5.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
-    { name = "more-itertools", version = "10.8.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
-    { name = "python-dateutil" },
-    { name = "pytz" },
+    { name = "more-itertools", version = "8.14.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.5.*'" },
+    { name = "python-dateutil", marker = "python_full_version < '3.6'" },
+    { name = "pytz", marker = "python_full_version < '3.6'" },
     { name = "requests", version = "2.25.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3' and python_full_version < '3.5'" },
-    { name = "requests", version = "2.27.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3' or (python_full_version >= '3.5' and python_full_version < '3.7')" },
-    { name = "requests", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
-    { name = "requests", version = "2.32.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
-    { name = "requests", version = "2.32.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
-    { name = "responses", version = "0.17.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.7'" },
-    { name = "responses", version = "0.23.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
-    { name = "responses", version = "0.25.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.8'" },
+    { name = "requests", version = "2.27.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3' or python_full_version == '3.5.*'" },
+    { name = "responses", version = "0.17.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.6'" },
     { name = "setuptools", version = "44.1.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.5'" },
     { name = "setuptools", version = "50.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.5.*'" },
-    { name = "setuptools", version = "59.6.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
-    { name = "setuptools", version = "68.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
-    { name = "setuptools", version = "75.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
-    { name = "setuptools", version = "80.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
-    { name = "six" },
+    { name = "six", marker = "python_full_version < '3.6'" },
     { name = "werkzeug", version = "1.0.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.6'" },
-    { name = "werkzeug", version = "2.0.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
-    { name = "werkzeug", version = "2.1.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.7'" },
     { name = "xmltodict", version = "0.12.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.4'" },
     { name = "xmltodict", version = "0.13.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.4' and python_full_version < '3.6'" },
-    { name = "xmltodict", version = "0.15.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.6' and python_full_version < '3.9'" },
-    { name = "xmltodict", version = "1.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
-    { name = "zipp" },
+    { name = "zipp", marker = "python_full_version < '3.6'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/54/ab/68e087189a383aeb28a3d1a2ec646a6269d99edd6386829e45bed10eca6d/moto-1.3.15.tar.gz", hash = "sha256:fd98f7b219084ba8aadad263849c4dbe8be73979e035d8dc5c86e11a86f11b7f", size = 1760920 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/01/77/4e6f7571d92e8a92b93e9cd4fa691c7bda1a7848b9aaa76a89bdc5b84928/moto-1.3.15-py2.py3-none-any.whl", hash = "sha256:3be7e1f406ef7e9c222dbcbfd8cefa2cb1062200e26deae49b5df446e17be3df", size = 879065 },
+]
+
+[[package]]
+name = "moto"
+version = "4.0.13"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.6.*'",
+]
+dependencies = [
+    { name = "boto3", version = "1.23.10", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "botocore", version = "1.26.10", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "cryptography", version = "40.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "importlib-metadata", version = "4.8.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "jinja2", marker = "python_full_version == '3.6.*'" },
+    { name = "markupsafe", marker = "python_full_version == '3.6.*'" },
+    { name = "python-dateutil", marker = "python_full_version == '3.6.*'" },
+    { name = "requests", version = "2.27.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "responses", version = "0.17.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "werkzeug", version = "2.0.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "xmltodict", version = "0.15.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ca/e8/1de79ac67a1375e230ec94e240c22cc287c6648b63919d4f02ef22ac0012/moto-4.0.13.tar.gz", hash = "sha256:baf7d6969cf837990c730e6e648315bebc2e1c0038d9d8fc4f59d03561484469", size = 2563514 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4f/70/31e6701275a446889eb6374738ff31728e33cb3f42f168919bcd89fa1ed8/moto-4.0.13-py3-none-any.whl", hash = "sha256:e73400c6d3fe06028aa7f07bb6f276f14260d289b70f38928a98e3d3d968352d", size = 1982390 },
+]
+
+[[package]]
+name = "moto"
+version = "4.2.14"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.7.*'",
+]
+dependencies = [
+    { name = "boto3", version = "1.33.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "botocore", version = "1.33.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "cryptography", version = "45.0.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "importlib-metadata", version = "6.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "jinja2", marker = "python_full_version == '3.7.*'" },
+    { name = "python-dateutil", marker = "python_full_version == '3.7.*'" },
+    { name = "requests", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "responses", version = "0.23.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "werkzeug", version = "2.1.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "xmltodict", version = "0.15.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f8/b2/06671ae921e7c7ebf18a20a6218fb55e83c3784b026eaf3d5670f9315924/moto-4.2.14.tar.gz", hash = "sha256:8f9263ca70b646f091edcc93e97cda864a542e6d16ed04066b1370ed217bd190", size = 4933741 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/0f/ef410e6660d381e04cb6f33065d03b3aefd3444d558fcdd41ef235a1802c/moto-4.2.14-py2.py3-none-any.whl", hash = "sha256:6d242dbbabe925bb385ddb6958449e5c827670b13b8e153ed63f91dbdb50372c", size = 3312702 },
+]
+
+[[package]]
+name = "moto"
+version = "5.0.28"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.8.*'",
+]
+dependencies = [
+    { name = "boto3", version = "1.37.38", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "botocore", version = "1.37.38", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "cryptography", version = "46.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "jinja2", marker = "python_full_version == '3.8.*'" },
+    { name = "python-dateutil", marker = "python_full_version == '3.8.*'" },
+    { name = "requests", version = "2.32.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "responses", version = "0.25.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "werkzeug", version = "2.1.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "xmltodict", version = "0.15.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/40/80/ac29b291289e16d0cb047dcce8a555ab150bcd30328141efff207f26ab7c/moto-5.0.28.tar.gz", hash = "sha256:4d3437693411ec943c13c77de5b0b520c4b0a9ac850fead4ba2a54709e086e8b", size = 6537950 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/77/d1/5a472eb11de9ee395db53c29cbd7b16a6c4d3e0d802b13d94a73951c2eae/moto-5.0.28-py3-none-any.whl", hash = "sha256:2dfbea1afe3b593e13192059a1a7fc4b3cf7fdf92e432070c22346efa45aa0f0", size = 4696467 },
+]
+
+[[package]]
+name = "moto"
+version = "5.1.14"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.10'",
+    "python_full_version == '3.9.*'",
+]
+dependencies = [
+    { name = "boto3", version = "1.40.49", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "botocore", version = "1.40.49", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "cryptography", version = "46.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "jinja2", marker = "python_full_version >= '3.9'" },
+    { name = "python-dateutil", marker = "python_full_version >= '3.9'" },
+    { name = "requests", version = "2.32.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "responses", version = "0.25.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "werkzeug", version = "2.1.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "xmltodict", version = "1.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c0/d9/ec94955a1b14ef45ccbda81f2256b30bf1f21ae5c5739fca14130bb1f048/moto-5.1.14.tar.gz", hash = "sha256:450690abb0b152fea7f93e497ac2172f15d8a838b15f22b514db801a6b857ae4", size = 7264025 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/07/a0/4c5955187853536c7d337709074a5f3ef391654a32a3379096b2d16bfd9b/moto-5.1.14-py3-none-any.whl", hash = "sha256:b9767848953beaf6650f1fd91615a3bcef84d93bd00603fa64dae38c656548e8", size = 5384022 },
 ]
 
 [[package]]
@@ -1198,7 +1308,11 @@ test = [
     { name = "jinja2" },
     { name = "markupsafe" },
     { name = "mock" },
-    { name = "moto" },
+    { name = "moto", version = "1.3.15", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.6'" },
+    { name = "moto", version = "4.0.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "moto", version = "4.2.14", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "moto", version = "5.0.28", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "moto", version = "5.1.14", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "nose" },
     { name = "zipp" },
 ]
@@ -1213,7 +1327,11 @@ dev = [
     { name = "jinja2" },
     { name = "markupsafe" },
     { name = "mock" },
-    { name = "moto" },
+    { name = "moto", version = "1.3.15", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.6'" },
+    { name = "moto", version = "4.0.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.6.*'" },
+    { name = "moto", version = "4.2.14", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.7.*'" },
+    { name = "moto", version = "5.0.28", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
+    { name = "moto", version = "5.1.14", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "nose" },
     { name = "zipp" },
 ]
@@ -1226,7 +1344,8 @@ requires-dist = [
     { name = "jinja2", marker = "extra == 'test'", specifier = "==2.11.3" },
     { name = "markupsafe", marker = "extra == 'test'", specifier = "==1.1.1" },
     { name = "mock", marker = "extra == 'test'", specifier = "==2.0.0" },
-    { name = "moto", marker = "extra == 'test'", specifier = "==1.3.15" },
+    { name = "moto", marker = "python_full_version >= '3.6' and extra == 'test'", specifier = ">=4.0.0" },
+    { name = "moto", marker = "python_full_version < '3.6' and extra == 'test'", specifier = "==1.3.15" },
     { name = "nose", marker = "extra == 'test'", specifier = "==1.3.7" },
     { name = "pycryptodome", specifier = ">=3.6.6" },
     { name = "pyyaml", specifier = ">=5.2" },
@@ -1243,7 +1362,8 @@ dev = [
     { name = "jinja2", specifier = "==2.11.3" },
     { name = "markupsafe", specifier = "==1.1.1" },
     { name = "mock", specifier = "==2.0.0" },
-    { name = "moto", specifier = "==1.3.15" },
+    { name = "moto", marker = "python_full_version < '3.6'", specifier = "==1.3.15" },
+    { name = "moto", marker = "python_full_version >= '3.6'", specifier = ">=4.0.0" },
     { name = "nose", specifier = "==1.3.7" },
     { name = "zipp", specifier = "==0.6.0" },
 ]
@@ -1885,6 +2005,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/af/48/b3bbe63a129a80911b60f57929c5b243af909bc1c9590917434bca61a4a3/types-PyYAML-6.0.12.12.tar.gz", hash = "sha256:334373d392fde0fdf95af5c3f1661885fa10c52167b14593eb856289e1855062", size = 11974 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9d/df/aabb870a04254ceb8a406b0a4222c1b14f7fdf3d2d7633ba49364aca27f3/types_PyYAML-6.0.12.12-py3-none-any.whl", hash = "sha256:c05bc6c158facb0676674b7f11fe3960db4f389718e19e62bd2b84d6205cfd24", size = 14923 },
+]
+
+[[package]]
+name = "typing-extensions"
+version = "4.1.1"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.6.*'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b1/5a/8b5fbb891ef3f81fc923bf3cb4a578c0abf9471eb50ce0f51c74212182ab/typing_extensions-4.1.1.tar.gz", hash = "sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42", size = 26694 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/45/6b/44f7f8f1e110027cf88956b59f2fad776cca7e1704396d043f89effd3a0e/typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2", size = 26844 },
 ]
 
 [[package]]

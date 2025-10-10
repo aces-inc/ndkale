@@ -74,12 +74,21 @@ class SQSTalk(object):
             resp = self._client.get_queue_url(QueueName=queue_name)
             queue_url = resp.get('QueueUrl')
         except botocore.exceptions.ClientError as e:
-            if e.response['Error']['Code'] != 'AWS.SimpleQueueService.NonExistentQueue':
+            # Handle various error codes for non-existent queues
+            # '404' is returned by moto (mock library)
+            # 'QueueDoesNotExist' is returned by real AWS SQS
+            # 'AWS.SimpleQueueService.NonExistentQueue' is also possible
+            error_code = e.response['Error']['Code']
+            if error_code not in ('404', 'QueueDoesNotExist', 'AWS.SimpleQueueService.NonExistentQueue'):
                 raise e
             tags = self._get_sqs_queue_tags(queue_name)
 
             logger.info('Creating new SQS queue: %s' % queue_name)
-            queue = self._client.create_queue(QueueName=queue_name, tags=tags)
+            # Only pass tags if they are not empty
+            if tags:
+                queue = self._client.create_queue(QueueName=queue_name, tags=tags)
+            else:
+                queue = self._client.create_queue(QueueName=queue_name)
             queue_url = queue.get('QueueUrl')
 
         # create queue object

@@ -43,7 +43,8 @@ Download = "http://pypi.python.org/pypi/ndkale#downloads"
 test = [
     "mock==2.0.0",
     "nose==1.3.7",
-    "moto==1.3.15",
+    "moto==1.3.15 ; python_version < '3.6'",
+    "moto>=4.0.0 ; python_version >= '3.6'",
     "MarkupSafe==1.1.1",
     "Jinja2==2.11.3",
     "zipp==0.6.0",
@@ -60,7 +61,8 @@ include = ["kale", "kale.*"]
 dev = [
     "mock==2.0.0",
     "nose==1.3.7",
-    "moto==1.3.15",
+    "moto==1.3.15 ; python_version < '3.6'",
+    "moto>=4.0.0 ; python_version >= '3.6'",
     "MarkupSafe==1.1.1",
     "Jinja2==2.11.3",
     "zipp==0.6.0",
