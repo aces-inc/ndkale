@@ -9,8 +9,6 @@ Any machine that wants to use these tasks MUST have
 KALE_SETTINGS_MODULE as an environment variable or this module
 will raise an exception.
 """
-from __future__ import absolute_import
-
 import importlib
 import logging
 import os

@@ -1,14 +1,10 @@
 """Benchmarks queue_info implementations."""
-from __future__ import absolute_import
-
 import argparse
 import logging
 import os
+import queue
 import threading
 import time
-
-import six.moves.queue
-from six.moves import range
 
 # Set this environment variable before importing kale module
 os.environ['KALE_SETTINGS_MODULE'] = 'benchmark_settings'
@@ -20,7 +16,7 @@ from kale import sqs
 logging.basicConfig(level='INFO')
 log = logging.getLogger('kale.benchmark')
 
-checking_sqs_time = six.moves.queue.Queue()
+checking_sqs_time = queue.Queue()
 
 
 class WorkerThread(threading.Thread):
@@ -78,7 +74,7 @@ class Benchmark(object):
         count = len(all_check_time)
         sum_time = sum(all_check_time)
         avg_time = sum_time / count
-        median_time = sorted(all_check_time)[count / 2]
+        median_time = sorted(all_check_time)[count // 2]
         max_time = max(all_check_time)
         log.info('Average Check Time: %f' % avg_time)
         log.info('Median Check time: %f' % median_time)
