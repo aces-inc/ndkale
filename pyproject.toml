@@ -65,4 +65,5 @@ dev = [
     "Jinja2==2.11.3",
     "zipp==0.6.0",
     "ecdsa==0.14.1",
+    "cryptography>=3.3.2",
 ]
