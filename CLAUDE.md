@@ -212,15 +212,15 @@ This project uses **uv** for package management. The migration from setuptools t
 - Build system: `setuptools>=64` with `setuptools.build_meta` backend
 - Main dependencies in `[project.dependencies]`
 - Test dependencies in both `[project.optional-dependencies]` (for pip compatibility) and `[dependency-groups]` (for uv)
-- Version is dynamically read from `kale/version/__version__` (current: 2.2.4)
+- Version is dynamically read from `kale/version.py` (current: 2.0.0)
 - Python support: >=3.9 (tested with Python 3.9 through 3.12)
 
 **Key dependencies:**
 - `boto3>=1.10.36` - AWS SDK for SQS operations
 - `pycryptodome>=3.6.6` - Message encryption
 - `pyyaml>=5.2` - Queue configuration parsing
+- `setuptools>=41.0.1` - Build and packaging tools
 - Python 3専用化に伴い `six` や `future` といった互換ライブラリは不要
-- `future>=0.18.2` - Python 2/3 compatibility
 
 **Installation methods:**
 ```bash
