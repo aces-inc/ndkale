@@ -46,18 +46,13 @@ python benchmark_queue_selector.py --tasks_load_file ~/sample_logs \
      --publish_interval 0.01 \
      --queue_selector_class Random
 """
-from __future__ import absolute_import
-
 import argparse
 import csv
 import logging
 import os
+import queue
 import threading
 import time
-
-from six.moves import range
-import six
-import six.moves.queue
 
 from kale import queue_info
 from kale import queue_selector
@@ -103,10 +98,10 @@ class StaticTaskQueue(queue_info.TaskQueue):
         self.default_priority = default_priority
 
         # What tasks are left in this queue for processing
-        self.tasks = six.moves.queue.Queue(maxsize=0)
+        self.tasks = queue.Queue(maxsize=0)
 
         # What tasks are finished
-        self.finished_tasks = six.moves.queue.Queue(maxsize=0)
+        self.finished_tasks = queue.Queue(maxsize=0)
 
         # How many times we need to wait for long polling.
         # That is, how often we hit an empty queue.
@@ -135,7 +130,7 @@ class StaticQueueInfo(queue_info.QueueInfoBase):
 
     def is_empty(self):
         """Are all queues empty?"""
-        for (queue_name, queue) in six.iteritems(self.queues):
+        for queue_name, queue in self.queues.items():
             if not self.is_queue_empty(queue):
                 return False
         return True
@@ -143,7 +138,7 @@ class StaticQueueInfo(queue_info.QueueInfoBase):
     def get_highest_priority_queue_that_needs_work(self):
         """Returns a list of non-empty queues."""
         non_empty_queues = []
-        for (queue_name, queue) in six.iteritems(self.queues):
+        for queue_name, queue in self.queues.items():
             if not self.is_queue_empty(queue):
                 non_empty_queues.append(self.queues[queue_name])
         if len(non_empty_queues) == 0:
@@ -195,7 +190,7 @@ class WorkerThread(threading.Thread):
                 time.sleep(float(task_running_time) / self.speedup)
                 self.queue_info.queues[queue.name].finished_tasks.put(
                     task_entry)
-            except six.moves.queue.Empty:
+            except queue.Empty:
                 # We want to keep track of long polling occurrences, which is
                 # a waste of compute resource.
                 self.queue_info.queues[queue.name].long_polling_count += 1
@@ -253,7 +248,7 @@ class PrintStatsThread(threading.Thread):
     def _print_queue_stats(self):
         """Print out queue stats."""
         string = ''
-        for queue_name in six.iterkeys(self.queue_info.queues):
+        for queue_name in self.queue_info.queues.keys():
             string += '%s=%d; ' % (
                 queue_name, self.queue_info.queues[queue_name].tasks.qsize())
         log.info(string)
@@ -268,7 +263,7 @@ class PrintStatsThread(threading.Thread):
         log.info('=== Benchmark Results ===')
         total_processed_tasks = 0
         finished_count_breakdown = {}
-        for queue_name in six.iterkeys(self.queue_info.queues):
+        for queue_name in self.queue_info.queues.keys():
             finished_tasks = self.queue_info.queues[queue_name].finished_tasks
             all_queue_latencies = []
             while not finished_tasks.empty():
@@ -291,13 +286,13 @@ class PrintStatsThread(threading.Thread):
                           'long_polling count %d') % (
                     queue_name,
                     total_latency / num_tasks,
-                    sorted(all_queue_latencies)[num_tasks / 2],
+                    sorted(all_queue_latencies)[num_tasks // 2],
                     max_latency,
                     self.queue_info.queues[queue_name].long_polling_count))
 
         log.info('Total processed tasks: %d / %d' % (
             total_processed_tasks, self.total_num_tasks))
-        for queue_name in six.iterkeys(finished_count_breakdown):
+        for queue_name in finished_count_breakdown.keys():
             log.info('Queue %s: %d tasks finished.' % (
                 queue_name, finished_count_breakdown[queue_name]))
 

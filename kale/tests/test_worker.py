@@ -1,15 +1,11 @@
 """Module testing the kale.worker module."""
-from __future__ import absolute_import
-
-import mock
+from unittest import mock
 import signal
 import unittest
 
 from kale import exceptions
 from kale import test_utils
 from kale import worker
-
-from six.moves import range
 
 
 class WorkerTestCase(unittest.TestCase):

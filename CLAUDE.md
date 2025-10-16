@@ -109,6 +109,10 @@ KALE_SETTINGS_MODULE=kale.tests.test_settings uv run python -m unittest kale.tes
 KALE_SETTINGS_MODULE=kale.tests.test_settings uv run python -m unittest kale.tests.test_task.TestTask -v
 ```
 
+### Continuous Integration
+- GitHub Actions workflow `.github/workflows/ci.yml` runs on every push (and PR) with Python 3.9, 3.10, 3.11, and 3.12.
+- Workflow steps: install the package with test extras and execute the unit test suite with `KALE_SETTINGS_MODULE=kale.tests.test_settings`.
+
 ### Local Development with ElasticMQ
 
 ElasticMQ emulates SQS locally for development. See `example/` directory:
@@ -209,13 +213,13 @@ This project uses **uv** for package management. The migration from setuptools t
 - Main dependencies in `[project.dependencies]`
 - Test dependencies in both `[project.optional-dependencies]` (for pip compatibility) and `[dependency-groups]` (for uv)
 - Version is dynamically read from `kale/version/__version__` (current: 2.2.4)
-- Python support: >=2.7 (supports Python 2.7, 3.5, 3.6, 3.7+)
+- Python support: >=3.9 (tested with Python 3.9 through 3.12)
 
 **Key dependencies:**
 - `boto3>=1.10.36` - AWS SDK for SQS operations
 - `pycryptodome>=3.6.6` - Message encryption
 - `pyyaml>=5.2` - Queue configuration parsing
-- `six>=1.11.0` - Python 2/3 compatibility
+- Python 3専用化に伴い `six` や `future` といった互換ライブラリは不要
 - `future>=0.18.2` - Python 2/3 compatibility
 
 **Installation methods:**
@@ -232,4 +236,3 @@ uv pip install git+https://github.com/Nextdoor/ndkale.git@<commit-hash>#egg=ndka
 # Install with development and test dependencies
 uv sync --group dev --extra test
 ```
-

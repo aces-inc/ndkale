@@ -1,9 +1,13 @@
 # Kale: Distributed task worker from Nextdoor
 
 ![Apache](https://img.shields.io/hexpm/l/plug.svg) 
-[![Build Status](https://travis-ci.org/Nextdoor/ndkale.svg?branch=master)](https://travis-ci.org/Nextdoor/ndkale)
+[![CI Status](https://github.com/Nextdoor/ndkale/actions/workflows/ci.yml/badge.svg)](https://github.com/Nextdoor/ndkale/actions/workflows/ci.yml)
 
-Kale is a python task worker library that supports priority queues on Amazon SQS. 
+Kale is a python task worker library that supports priority queues on Amazon SQS.
+
+## Requirements
+
+- Python 3.9 or later
 
 Check out our blog post - [Nextdoor Taskworker: Simple, Efficient & Scalable](https://engblog.nextdoor.com/ac4f7886957b)
 
@@ -211,6 +215,8 @@ Install all runtime and testing dependencies:
 Run the test suite:
 
     KALE_SETTINGS_MODULE=kale.tests.test_settings uv run python -m unittest discover -s kale/tests -p "test_*.py" -v
+
+The GitHub Actions workflow in `.github/workflows/ci.yml` runs the unit test suite on Python 3.9, 3.10, 3.11, and 3.12 on every push.
 
 ### Example implementation
 

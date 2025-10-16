@@ -1,10 +1,8 @@
 """Module testing the kale.sqs module."""
-from __future__ import absolute_import
-
 import unittest
 
 import boto3
-import mock
+from unittest import mock
 from moto import mock_aws
 
 from kale import exceptions
