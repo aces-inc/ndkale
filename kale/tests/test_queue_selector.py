@@ -1,6 +1,4 @@
 """Tests queue_selector.py"""
-from __future__ import absolute_import
-
 import unittest
 
 from kale import queue_info

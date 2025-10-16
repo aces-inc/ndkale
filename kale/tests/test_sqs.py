@@ -1,11 +1,9 @@
 """Module testing the kale.sqs module."""
-from __future__ import absolute_import
-
 import unittest
 
 import boto3
-import mock
-from moto import mock_sqs
+from unittest import mock
+from moto import mock_aws
 
 from kale import exceptions
 from kale import sqs
@@ -17,12 +15,12 @@ class SQSTestCase(unittest.TestCase):
     _previous_region = None
 
     def setUp(self):
-        self.mock_sqs = mock_sqs()
-        self.mock_sqs.start()
+        self.mock_aws = mock_aws()
+        self.mock_aws.start()
         sqs.SQSTalk._queues = {}
 
     def tearDown(self):
-        self.mock_sqs.stop()
+        self.mock_aws.stop()
 
     def test_create_queue(self):
         boto3.setup_default_session()
@@ -31,13 +29,19 @@ class SQSTestCase(unittest.TestCase):
 
         sqs_inst._get_or_create_queue('LowPriorityTest1')
         sqs_inst._get_or_create_queue('HighPriorityTest2')
+        sqs_inst._get_or_create_queue('HighPriorityTest2-dlq')
 
-        expected_low_queue = sqs_inst._sqs.Queue('https://queue.amazonaws.com/123456789012/'
+        # moto 5.x uses the format: https://sqs.{region}.amazonaws.com/{account_id}/{queue_name}
+        expected_low_queue = sqs_inst._sqs.Queue('https://sqs.us-east-1.amazonaws.com/123456789012/'
                                                  'LowPriorityTest1')
-        expected_hi_queue = sqs_inst._sqs.Queue('https://queue.amazonaws.com/123456789012/'
+        expected_hi_queue = sqs_inst._sqs.Queue('https://sqs.us-east-1.amazonaws.com/123456789012/'
                                                 'HighPriorityTest2')
 
-        self.assertEqual(len(sqs_inst._queues), 2)
+        expected_hi_dlq_queue = sqs_inst._sqs.Queue('https://sqs.us-east-1.amazonaws.com/123456789012/'
+                                                'HighPriorityTest2-dlq')
+
+
+        self.assertEqual(len(sqs_inst._queues), 3)
 
         self.assertEqual(expected_low_queue, sqs_inst._queues['LowPriorityTest1'])
         self.assertEqual(expected_hi_queue, sqs_inst._queues['HighPriorityTest2'])

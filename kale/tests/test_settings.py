@@ -1,6 +1,4 @@
 """Module for kale settings for unit tests."""
-from __future__ import absolute_import
-
 import os
 
 QUEUE_CONFIG = os.path.join(os.path.split(os.path.abspath(__file__))[0],

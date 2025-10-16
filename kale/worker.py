@@ -2,14 +2,10 @@
 
 It's an infinite loop.
 """
-from __future__ import absolute_import
-
 import logging
 import signal
 import sys
 import time
-
-from six.moves import range
 
 from kale import consumer
 from kale import publisher

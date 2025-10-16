@@ -1,9 +1,8 @@
 """Module testing the kale.utils module."""
-from __future__ import absolute_import
 import resource
 import sys
 
-import mock
+from unittest import mock
 import unittest
 
 from kale import utils

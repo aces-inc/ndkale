@@ -6,11 +6,7 @@ We can have different ways of getting queue information, e.g., from Zookeeper,
 Thus, we need to extend the base class QueueInfoBase for different
 implementations and use the right implementation in different cases.
 """
-from __future__ import absolute_import
-
 import botocore.exceptions
-
-import six
 import yaml
 
 
@@ -198,7 +194,7 @@ class QueueInfo(QueueInfoBase):
         with open(config_file, 'r') as fp:
             queues_from_config = yaml.safe_load(fp)
             queues = []
-            for queue_name, queue in six.iteritems(queues_from_config):
+            for queue_name, queue in queues_from_config.items():
                 q = queue_cls(name=queue['name'], priority=queue['priority'],
                               num_iterations=queue['num_iterations'],
                               long_poll_time_sec=queue['long_poll_time_sec'],
