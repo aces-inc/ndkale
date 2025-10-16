@@ -109,7 +109,7 @@ class Task(object):
         return task_id
 
     @classmethod
-    def _get_delay_sec_for_retry_with_message(cls, message):
+    def _get_delay_sec_for_retry_with_message(cls, message, raised_exception=None):
         return cls._get_delay_sec_for_retry(message.task_retry_num)
 
     @classmethod
@@ -169,17 +169,17 @@ class Task(object):
         failure_count = message.task_failure_num
         if increment_failure_num:
             failure_count = failure_count + 1
-        cls.republish(message, failure_count)
+        cls.republish(message, failure_count, raised_exception)
         return True
 
     @classmethod
-    def republish(cls, message, failure_count):
+    def republish(cls, message, failure_count, raised_exception=None):
         payload = {
             'args': message.task_args,
             'kwargs': message.task_kwargs,
             'app_data': message.task_app_data}
         retry_count = message.task_retry_num + 1
-        delay_sec = cls._get_delay_sec_for_retry_with_message(message)
+        delay_sec = cls._get_delay_sec_for_retry_with_message(message, raised_exception)
         pub = cls._get_publisher()
         pub.publish(
             cls, message.task_id, payload,
