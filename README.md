@@ -182,10 +182,14 @@ Here's an example
 ### Install kale
     
 From source code
-    
-    python setup.py install
-    
-Using pip (from github repo)
+
+    uv pip install .
+
+Using uv directly from GitHub:
+
+    uv pip install git+https://github.com/Nextdoor/ndkale.git#egg=ndkale
+
+Using pip (for environments without uv)
 
     #
     # Put this in requirements.txt, then run
@@ -197,6 +201,16 @@ Using pip (from github repo)
 
     # Or put this if you want a specific commit
     git+https://github.com/Nextdoor/ndkale.git@67f873ed7b0a8131cc8d72453d749ffb389d695f
+
+### Development environment with uv
+
+Install all runtime and testing dependencies:
+
+    uv sync --group dev --extra test
+
+Run the test suite:
+
+    uv run --group dev nosetests
     
     #
     # Run from command line
